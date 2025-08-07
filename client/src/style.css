@@ -1,0 +1,68 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.board {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  flex-wrap: wrap;
+}
+
+.column {
+  background: #f4f4f4;
+  border-radius: 4px;
+  padding: 0.5rem;
+  min-width: 250px;
+  flex: 1;
+}
+
+.column h2 {
+  text-align: center;
+}
+
+.developer-card {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.lead-badge {
+  display: inline-block;
+  background: #007bff;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 4px;
+  font-size: 0.75rem;
+}
+
+.success {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background: #28a745;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+.run {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.run-columns {
+  display: flex;
+  gap: 1rem;
+  flex: 1;
+}
+
+.run-columns .column {
+  min-width: 0;
+}
