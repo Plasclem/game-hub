@@ -19,10 +19,17 @@ type Assignment = {
 
 const runCols = ['anomalies', 'service', 'fastTrack'] as const;
 const titles: Record<string, string> = {
-  build: 'Build',
+  build: '✅🛠️ Build',
   anomalies: 'Anomalies',
   service: 'Service',
   fastTrack: 'Fast Track',
+};
+
+const columnClasses: Record<string, string> = {
+  build: 'build-column',
+  anomalies: 'anomalies-column',
+  service: 'service-column',
+  fastTrack: 'fastTrack-column',
 };
 
 function App() {
@@ -77,12 +84,24 @@ function App() {
   if (!data) {
     return <div>Loading...</div>;
   }
+  const totalDevelopers =
+    data.build.length +
+    data.run.anomalies.length +
+    data.run.service.length +
+    data.run.fastTrack.length;
 
   const renderList = (id: string, developers: Developer[]) => (
     <Droppable droppableId={id} key={id}>
       {(provided) => (
-        <div className="column" ref={provided.innerRef} {...provided.droppableProps}>
-          <h3>{titles[id]}</h3>
+        <div
+          className={`column ${columnClasses[id]}`}
+          ref={provided.innerRef}
+          {...provided.droppableProps}
+        >
+          <div className="column-header">
+            <h3>{titles[id]}</h3>
+            <span className="badge">{developers.length}</span>
+          </div>
           {developers.map((dev, index) => (
             <Draggable draggableId={dev.id} index={index} key={dev.id}>
               {(prov) => (
@@ -92,9 +111,9 @@ function App() {
                   {...prov.draggableProps}
                   {...prov.dragHandleProps}
                 >
-                  <div>{dev.name}</div>
-                  <div>
-                    Lead: <span className="lead-badge">{dev.lead}</span>
+                  <div className="developer-name">👤 {dev.name}</div>
+                  <div className="developer-lead">
+                    👑 Lead: <span className="lead-badge">{dev.lead}</span>
                   </div>
                 </div>
               )}
@@ -108,12 +127,18 @@ function App() {
 
   return (
     <>
-      <h1>Team assignments</h1>
+      <header className="header">
+        <div>
+          <h1>Affectation des Développeurs</h1>
+          <p>Gérez les affectations entre les équipes Build et Run</p>
+        </div>
+        <div className="total">Total développeurs : {totalDevelopers}</div>
+      </header>
       <DragDropContext onDragEnd={handleDragEnd}>
         <div className="board">
           {renderList('build', data.build)}
           <div className="run">
-            <h2>Run</h2>
+            <h2>⚙️ Run</h2>
             <div className="run-columns">
               {runCols.map((col) => renderList(col, data.run[col]))}
             </div>

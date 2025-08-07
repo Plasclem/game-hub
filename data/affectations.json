@@ -1,13 +1,18 @@
 {
   "build": [
-    {"id": "dev1", "name": "Alice", "lead": "Bob"},
-    {"id": "dev2", "name": "Charlie", "lead": "Dana"}
+    { "id": "dev1", "name": "Alice Martin", "lead": "Sophie Dubois" },
+    { "id": "dev2", "name": "Thomas Bernard", "lead": "Sophie Dubois" }
   ],
   "run": {
     "anomalies": [
-      {"id": "dev3", "name": "Eve", "lead": "Frank"}
+      { "id": "dev3", "name": "Marie Leroy", "lead": "Pierre Moreau" }
     ],
-    "service": [],
-    "fastTrack": []
+    "service": [
+      { "id": "dev4", "name": "Lucas Petit", "lead": "Pierre Moreau" },
+      { "id": "dev5", "name": "Emma Roux", "lead": "Julie Martin" }
+    ],
+    "fastTrack": [
+      { "id": "dev6", "name": "Hugo Blanc", "lead": "Julie Martin" }
+    ]
   }
 }
