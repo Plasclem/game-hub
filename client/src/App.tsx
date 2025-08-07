@@ -108,6 +108,7 @@ function App() {
 
   return (
     <>
+      <h1>Team assignments</h1>
       <DragDropContext onDragEnd={handleDragEnd}>
         <div className="board">
           {renderList('build', data.build)}
