@@ -13,6 +13,35 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(CLIENT_BUILD_PATH));
 
+let clients = [];
+const sendEvents = (excludeId) => {
+  clients.forEach(({ id, res }) => {
+    if (id !== excludeId) {
+      res.write('data: notify\n\n');
+    }
+  });
+};
+
+app.get('/events', (req, res) => {
+  const clientId = req.query.id;
+  res.set({
+    'Content-Type': 'text/event-stream',
+    'Cache-Control': 'no-cache',
+    Connection: 'keep-alive',
+  });
+  res.flushHeaders();
+  res.write('retry: 10000\n\n');
+  clients.push({ id: clientId, res });
+  req.on('close', () => {
+    clients = clients.filter((c) => c.res !== res);
+  });
+});
+
+app.post('/notify', (req, res) => {
+  sendEvents(req.query.id);
+  res.status(200).end();
+});
+
 app.get('/affectations', async (req, res) => {
   try {
     const data = await fs.readFile(DATA_FILE, 'utf-8');

@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import { useAssignments } from '../behavior/useAssignments';
 import { runCols, titles, columnClasses } from '../behavior/constants';
 import { Developer } from '../types';
+import { sendNotification, subscribeNotifications } from '../services/notificationService';
 
 function App() {
   const { data, saved, handleDragEnd, totalDevelopers } = useAssignments();
+  const [notification, setNotification] = useState(false);
+
+  useEffect(() => {
+    const unsub = subscribeNotifications(() => setNotification(true));
+    return unsub;
+  }, []);
+
+  useEffect(() => {
+    if (notification) {
+      const timer = setTimeout(() => setNotification(false), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [notification]);
 
   if (!data) {
     return <div>Loading...</div>;
@@ -55,6 +69,9 @@ function App() {
           <h1>Affectation des Développeurs</h1>
           <p>Gérez les affectations entre les équipes Build et Run</p>
         </div>
+        <button className="notif-btn" onClick={() => sendNotification()}>
+          send notif
+        </button>
         <div className="total">Total développeurs : {totalDevelopers}</div>
       </header>
       <DragDropContext onDragEnd={handleDragEnd}>
@@ -70,6 +87,9 @@ function App() {
         <div className="free-section">{renderList('free', data.free)}</div>
       </DragDropContext>
       {saved && <div className="success">Sauvegarde réussie</div>}
+      {notification && (
+        <div className="notification">Modification effectuée par un autre utilisateur</div>
+      )}
     </>
   );
 }
