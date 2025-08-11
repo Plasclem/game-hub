@@ -13,13 +13,21 @@ export const useAssignments = () => {
 
   const handleDragEnd = (result: DropResult) => {
     if (!result.destination || !data) return;
-    const sourceId = result.source.droppableId as keyof Assignment['run'] | 'build';
-    const destId = result.destination.droppableId as keyof Assignment['run'] | 'build';
+    const sourceId = result.source.droppableId as keyof Assignment['run'] | 'build' | 'free';
+    const destId = result.destination.droppableId as keyof Assignment['run'] | 'build' | 'free';
 
     const sourceList =
-      sourceId === 'build' ? [...data.build] : [...data.run[sourceId]];
+      sourceId === 'build'
+        ? [...data.build]
+        : sourceId === 'free'
+        ? [...data.free]
+        : [...data.run[sourceId]];
     const destList =
-      destId === 'build' ? [...data.build] : [...data.run[destId]];
+      destId === 'build'
+        ? [...data.build]
+        : destId === 'free'
+        ? [...data.free]
+        : [...data.run[destId]];
 
     const [moved] = sourceList.splice(result.source.index, 1);
     destList.splice(result.destination.index, 0, moved);
@@ -47,6 +55,12 @@ export const useAssignments = () => {
             ? destList
             : data.run.fastTrack,
       },
+      free:
+        sourceId === 'free'
+          ? sourceList
+          : destId === 'free'
+          ? destList
+          : data.free,
     };
     setData(newData);
     saveAssignments(newData).then(() => {
@@ -60,7 +74,8 @@ export const useAssignments = () => {
       ? data.build.length +
         data.run.anomalies.length +
         data.run.service.length +
-        data.run.fastTrack.length
+        data.run.fastTrack.length +
+        data.free.length
       : 0;
 
   return { data, saved, handleDragEnd, totalDevelopers };

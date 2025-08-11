@@ -11,4 +11,5 @@ export type Assignment = {
     service: Developer[];
     fastTrack: Developer[];
   };
+  free: Developer[];
 };

@@ -5,6 +5,7 @@ export const titles: Record<string, string> = {
   anomalies: 'Anomalies',
   service: 'Service',
   fastTrack: 'Fast Track',
+  free: 'Libre',
 };
 
 export const columnClasses: Record<string, string> = {
@@ -12,4 +13,5 @@ export const columnClasses: Record<string, string> = {
   anomalies: 'anomalies-column',
   service: 'service-column',
   fastTrack: 'fastTrack-column',
+  free: 'free-column',
 };
