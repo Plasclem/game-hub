@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { DropResult } from '@hello-pangea/dnd';
 import { Assignment } from '../types';
 import { getAssignments, saveAssignments } from '../services/assignmentService';
+import { sendNotification } from '../services/notificationService';
 
 export const useAssignments = () => {
   const [data, setData] = useState<Assignment | null>(null);
@@ -66,6 +67,7 @@ export const useAssignments = () => {
     saveAssignments(newData).then(() => {
       setSaved(true);
       setTimeout(() => setSaved(false), 2000);
+      sendNotification();
     });
   };
 
