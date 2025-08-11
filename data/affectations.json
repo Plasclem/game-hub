@@ -1,19 +1,54 @@
 {
   "build": [
-    { "id": "dev1", "name": "Alice Martin", "lead": "Sophie Dubois" },
-    { "id": "dev2", "name": "Thomas Bernard", "lead": "Sophie Dubois" }
+    { "id": "dev1", "name": "Albert Einstein", "lead": "Sophie Dubois" },
+    { "id": "dev2", "name": "Isaac Newton", "lead": "Sophie Dubois" },
+    { "id": "dev3", "name": "Marie Curie", "lead": "Sophie Dubois" },
+    { "id": "dev4", "name": "Nikola Tesla", "lead": "Sophie Dubois" },
+    { "id": "dev5", "name": "Galileo Galilei", "lead": "Sophie Dubois" },
+    { "id": "dev6", "name": "Charles Darwin", "lead": "Sophie Dubois" },
+    { "id": "dev7", "name": "Stephen Hawking", "lead": "Sophie Dubois" },
+    { "id": "dev8", "name": "Ada Lovelace", "lead": "Sophie Dubois" },
+    { "id": "dev9", "name": "Niels Bohr", "lead": "Sophie Dubois" },
+    { "id": "dev10", "name": "Rosalind Franklin", "lead": "Sophie Dubois" }
   ],
   "run": {
     "anomalies": [
-      { "id": "dev3", "name": "Marie Leroy", "lead": "Pierre Moreau" }
+      { "id": "dev11", "name": "Johannes Kepler", "lead": "Pierre Moreau" },
+      { "id": "dev12", "name": "Carl Sagan", "lead": "Pierre Moreau" },
+      { "id": "dev13", "name": "Richard Feynman", "lead": "Pierre Moreau" },
+      { "id": "dev14", "name": "Enrico Fermi", "lead": "Pierre Moreau" },
+      { "id": "dev15", "name": "James Clerk Maxwell", "lead": "Pierre Moreau" },
+      { "id": "dev16", "name": "Dmitri Mendeleev", "lead": "Pierre Moreau" },
+      { "id": "dev17", "name": "Alan Turing", "lead": "Pierre Moreau" },
+      { "id": "dev18", "name": "Michael Faraday", "lead": "Pierre Moreau" },
+      { "id": "dev19", "name": "Max Planck", "lead": "Pierre Moreau" },
+      { "id": "dev20", "name": "Louis Pasteur", "lead": "Pierre Moreau" }
     ],
     "service": [
-      { "id": "dev4", "name": "Lucas Petit", "lead": "Pierre Moreau" },
-      { "id": "dev5", "name": "Emma Roux", "lead": "Julie Martin" }
+      { "id": "dev21", "name": "Gregor Mendel", "lead": "Julie Martin" },
+      { "id": "dev22", "name": "Werner Heisenberg", "lead": "Julie Martin" },
+      { "id": "dev23", "name": "Erwin Schrödinger", "lead": "Julie Martin" },
+      { "id": "dev24", "name": "Paul Dirac", "lead": "Julie Martin" },
+      { "id": "dev25", "name": "Henrietta Leavitt", "lead": "Julie Martin" },
+      { "id": "dev26", "name": "Emmy Noether", "lead": "Julie Martin" },
+      { "id": "dev27", "name": "Lise Meitner", "lead": "Julie Martin" },
+      { "id": "dev28", "name": "Chien-Shiung Wu", "lead": "Julie Martin" },
+      { "id": "dev29", "name": "Subrahmanyan Chandrasekhar", "lead": "Julie Martin" },
+      { "id": "dev30", "name": "J. J. Thomson", "lead": "Julie Martin" }
     ],
     "fastTrack": [
-      { "id": "dev6", "name": "Hugo Blanc", "lead": "Julie Martin" }
+      { "id": "dev31", "name": "Robert Oppenheimer", "lead": "Julie Martin" },
+      { "id": "dev32", "name": "Leonhard Euler", "lead": "Julie Martin" },
+      { "id": "dev33", "name": "Pierre-Simon Laplace", "lead": "Julie Martin" },
+      { "id": "dev34", "name": "Blaise Pascal", "lead": "Julie Martin" },
+      { "id": "dev35", "name": "Hippocrates", "lead": "Julie Martin" }
     ]
   },
-  "free": []
+  "free": [
+    { "id": "dev36", "name": "Euclid", "lead": "Sophie Dubois" },
+    { "id": "dev37", "name": "Archimedes", "lead": "Sophie Dubois" },
+    { "id": "dev38", "name": "Ptolemy", "lead": "Sophie Dubois" },
+    { "id": "dev39", "name": "Tycho Brahe", "lead": "Sophie Dubois" },
+    { "id": "dev40", "name": "Alexander Fleming", "lead": "Sophie Dubois" }
+  ]
 }
