@@ -23,24 +23,26 @@ function App() {
             <h3>{titles[id]}</h3>
             <span className="badge">{developers.length}</span>
           </div>
-          {developers.map((dev, index) => (
-            <Draggable draggableId={dev.id} index={index} key={dev.id}>
-              {(prov) => (
-                <div
-                  className="developer-card"
-                  ref={prov.innerRef}
-                  {...prov.draggableProps}
-                  {...prov.dragHandleProps}
-                >
-                  <div className="developer-name">👤 {dev.name}</div>
-                  <div className="developer-lead">
-                    👑 Lead: <span className="lead-badge">{dev.lead}</span>
+          <div className="developer-list">
+            {developers.map((dev, index) => (
+              <Draggable draggableId={dev.id} index={index} key={dev.id}>
+                {(prov) => (
+                  <div
+                    className="developer-card"
+                    ref={prov.innerRef}
+                    {...prov.draggableProps}
+                    {...prov.dragHandleProps}
+                  >
+                    <div className="developer-name">👤 {dev.name}</div>
+                    <div className="developer-lead">
+                      👑 Lead: <span className="lead-badge">{dev.lead}</span>
+                    </div>
                   </div>
-                </div>
-              )}
-            </Draggable>
-          ))}
-          {provided.placeholder}
+                )}
+              </Draggable>
+            ))}
+            {provided.placeholder}
+          </div>
         </div>
       )}
     </Droppable>
