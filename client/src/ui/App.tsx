@@ -14,12 +14,6 @@ function App() {
     return unsub;
   }, []);
 
-  useEffect(() => {
-    if (notification) {
-      const timer = setTimeout(() => setNotification(false), 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [notification]);
 
   if (!data) {
     return <div>Loading...</div>;
@@ -88,7 +82,15 @@ function App() {
       </DragDropContext>
       {saved && <div className="success">Sauvegarde réussie</div>}
       {notification && (
-        <div className="notification">Modification effectuée par un autre utilisateur</div>
+        <div className="notification">
+          <div
+            className="notification-message"
+            onClick={() => window.location.reload()}
+          >
+            Modification effectuée par un autre utilisateur - Cliquez pour
+            recharger
+          </div>
+        </div>
       )}
     </>
   );
