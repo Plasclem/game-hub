@@ -65,6 +65,7 @@ function App() {
             </div>
           </div>
         </div>
+        <div className="free-section">{renderList('free', data.free)}</div>
       </DragDropContext>
       {saved && <div className="success">Sauvegarde réussie</div>}
     </>
