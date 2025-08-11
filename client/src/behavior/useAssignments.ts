@@ -1,0 +1,67 @@
+import { useEffect, useState } from 'react';
+import { DropResult } from '@hello-pangea/dnd';
+import { Assignment } from '../types';
+import { getAssignments, saveAssignments } from '../services/assignmentService';
+
+export const useAssignments = () => {
+  const [data, setData] = useState<Assignment | null>(null);
+  const [saved, setSaved] = useState(false);
+
+  useEffect(() => {
+    getAssignments().then(setData);
+  }, []);
+
+  const handleDragEnd = (result: DropResult) => {
+    if (!result.destination || !data) return;
+    const sourceId = result.source.droppableId as keyof Assignment['run'] | 'build';
+    const destId = result.destination.droppableId as keyof Assignment['run'] | 'build';
+
+    const sourceList =
+      sourceId === 'build' ? [...data.build] : [...data.run[sourceId]];
+    const destList =
+      destId === 'build' ? [...data.build] : [...data.run[destId]];
+
+    const [moved] = sourceList.splice(result.source.index, 1);
+    destList.splice(result.destination.index, 0, moved);
+
+    const newData: Assignment = {
+      build:
+        sourceId === 'build' ? sourceList : destId === 'build' ? destList : data.build,
+      run: {
+        anomalies:
+          sourceId === 'anomalies'
+            ? sourceList
+            : destId === 'anomalies'
+            ? destList
+            : data.run.anomalies,
+        service:
+          sourceId === 'service'
+            ? sourceList
+            : destId === 'service'
+            ? destList
+            : data.run.service,
+        fastTrack:
+          sourceId === 'fastTrack'
+            ? sourceList
+            : destId === 'fastTrack'
+            ? destList
+            : data.run.fastTrack,
+      },
+    };
+    setData(newData);
+    saveAssignments(newData).then(() => {
+      setSaved(true);
+      setTimeout(() => setSaved(false), 2000);
+    });
+  };
+
+  const totalDevelopers =
+    data
+      ? data.build.length +
+        data.run.anomalies.length +
+        data.run.service.length +
+        data.run.fastTrack.length
+      : 0;
+
+  return { data, saved, handleDragEnd, totalDevelopers };
+};
