@@ -2,9 +2,9 @@ export const runCols = ['anomalies', 'service', 'fastTrack'] as const;
 
 export const titles: Record<string, string> = {
   build: '✅🛠️ Build',
-  anomalies: 'Anomalies',
-  service: 'Service',
-  fastTrack: 'Fast Track',
+  anomalies: 'Interventions',
+  service: 'Services/Evols',
+  fastTrack: 'Transport (x anos x services)',
   free: 'Libre',
 };
 
