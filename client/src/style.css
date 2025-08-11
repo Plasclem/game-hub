@@ -83,13 +83,41 @@ body {
   text-align: center;
 }
 
+.developer-list {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.build-column .developer-list,
+.anomalies-column .developer-list,
+.service-column .developer-list,
+.fastTrack-column .developer-list {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.free-column .developer-list {
+  grid-template-columns: repeat(4, 1fr);
+}
+
 .developer-card {
   background: white;
   border: 1px solid #ccc;
   border-radius: 4px;
   padding: 0.5rem;
-  margin-bottom: 0.5rem;
-  width: 350px;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .build-column .developer-list,
+  .anomalies-column .developer-list,
+  .service-column .developer-list,
+  .fastTrack-column .developer-list {
+    grid-template-columns: 1fr;
+  }
+
+  .free-column .developer-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .lead-badge {
