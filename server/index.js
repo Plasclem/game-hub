@@ -5,11 +5,13 @@ const fs = require('fs').promises;
 const path = require('path');
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 const DATA_FILE = path.join(__dirname, '../data/affectations.json');
+const CLIENT_BUILD_PATH = path.join(__dirname, '../client/dist');
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static(CLIENT_BUILD_PATH));
 
 app.get('/affectations', async (req, res) => {
   try {
@@ -27,6 +29,10 @@ app.post('/affectations', async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: 'Could not save data' });
   }
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(CLIENT_BUILD_PATH, 'index.html'));
 });
 
 app.listen(PORT, () => {
