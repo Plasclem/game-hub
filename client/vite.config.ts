@@ -5,7 +5,9 @@ export default defineConfig({
   server: {
     port: 3000,
     proxy: {
-      '/affectations': 'http://localhost:3001'
+      '/affectations': 'http://localhost:3001',
+      '/notify': 'http://localhost:3001',
+      '/events': 'http://localhost:3001'
     }
   },
   plugins: [react()]
