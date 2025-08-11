@@ -29,3 +29,14 @@ npm run dev
 ```
 
 The client runs on `http://localhost:3000` and proxies API requests to the server on `http://localhost:3001`.
+
+## Running with Docker
+
+Build the image and start the application:
+
+```
+docker build -t game-hub .
+docker run -p 3001:3001 game-hub
+```
+
+Then open `http://localhost:3001` in your browser.
