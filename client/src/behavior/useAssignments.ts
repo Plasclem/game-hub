@@ -9,6 +9,9 @@ export const useAssignments = () => {
 
   useEffect(() => {
     getAssignments().then(setData);
+    const source = new EventSource('/events');
+    source.onmessage = (e) => setData(JSON.parse(e.data));
+    return () => source.close();
   }, []);
 
   const handleDragEnd = (result: DropResult) => {
