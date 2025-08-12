@@ -1,4 +1,5 @@
 import React from 'react';
+import './DeveloperCard.css';
 import { Draggable } from '@hello-pangea/dnd';
 import { Developer } from '../../types';
 

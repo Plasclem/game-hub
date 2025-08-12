@@ -1,0 +1,15 @@
+.run-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.run-section h3 {
+  text-align: center;
+}
+
+.run-columns {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}

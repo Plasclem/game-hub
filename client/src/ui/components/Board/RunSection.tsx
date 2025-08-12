@@ -1,4 +1,5 @@
 import React from 'react';
+import './RunSection.css';
 import RunColumn from './RunColumn';
 import { Assignment } from '../../../types';
 import { runCols } from '../../../behavior/constants';

@@ -1,4 +1,5 @@
 import React from 'react';
+import './Board.css';
 import { Assignment } from '../../../types';
 import BuildColumn from './BuildColumn';
 import RunSection from './RunSection';
