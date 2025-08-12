@@ -1,4 +1,4 @@
-# Game Hub Assignment Board
+# Team Assignment Board
 
 This repository contains a simple full-stack application to manage developer assignments between Build and Run streams.
 
