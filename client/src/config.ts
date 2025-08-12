@@ -13,7 +13,7 @@ const dragCookie = getCookie('x-drag');
 
 export const features: FeatureConfig = {
   readOnly: false,
-  dragAndDrop: dragCookie ? dragCookie === 'true' : true,
+  dragAndDrop: dragCookie ? dragCookie === 'true' : false,
 };
 
 export default features;
