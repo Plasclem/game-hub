@@ -5,6 +5,7 @@ import Board from './components/Board/Board';
 import Notification from './Notification';
 import { useAssignments } from '../behavior/useAssignments';
 import { sendNotification, subscribeNotifications } from '../services/notificationService';
+import features from '../config';
 import './App.css';
 
 function App() {
@@ -30,7 +31,7 @@ function App() {
   return (
     <>
       <Header totalDevelopers={totalDevelopers} onSendNotification={sendNotification} />
-      <DragDropContext onDragEnd={handleDragEnd}>
+      <DragDropContext onDragEnd={features.dragAndDrop ? handleDragEnd : () => {}}>
         <Board data={data} />
       </DragDropContext>
       {saved && <div className="success">Sauvegarde réussie</div>}

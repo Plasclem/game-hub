@@ -3,6 +3,7 @@ import './Column.css';
 import { Droppable } from '@hello-pangea/dnd';
 import DeveloperCard from './DeveloperCard';
 import { Developer } from '../../types';
+import features from '../../config';
 
 interface ColumnProps {
   id: string;
@@ -13,7 +14,7 @@ interface ColumnProps {
 
 const Column: React.FC<ColumnProps> = ({ id, title, developers, className }) => {
   return (
-    <Droppable droppableId={id} key={id}>
+    <Droppable droppableId={id} key={id} isDropDisabled={!features.dragAndDrop}>
       {(provided) => (
         <div className={className} ref={provided.innerRef} {...provided.droppableProps}>
           <div className="column-header">

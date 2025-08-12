@@ -2,6 +2,7 @@ import React from 'react';
 import './DeveloperCard.css';
 import { Draggable } from '@hello-pangea/dnd';
 import { Developer } from '../../types';
+import features from '../../config';
 
 interface DeveloperCardProps {
   developer: Developer;
@@ -10,7 +11,7 @@ interface DeveloperCardProps {
 
 const DeveloperCard: React.FC<DeveloperCardProps> = ({ developer, index }) => {
   return (
-    <Draggable draggableId={developer.id} index={index}>
+    <Draggable draggableId={developer.id} index={index} isDragDisabled={!features.dragAndDrop}>
       {(provided) => (
         <div
           className="developer-card"
