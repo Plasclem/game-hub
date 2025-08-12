@@ -1,4 +1,5 @@
 import React from 'react';
+import './RunColumn.css';
 import Column from '../Column';
 import { Developer, Assignment } from '../../../types';
 import { titles, columnClasses } from '../../../behavior/constants';

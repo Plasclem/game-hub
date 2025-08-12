@@ -1,4 +1,5 @@
 import React from 'react';
+import './FreeSection.css';
 import Column from '../Column';
 import { Developer } from '../../../types';
 import { titles, columnClasses } from '../../../behavior/constants';

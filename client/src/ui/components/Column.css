@@ -1,0 +1,30 @@
+.column {
+  background: #f4f4f4;
+  border-radius: 4px;
+  padding: 0.5rem;
+  min-width: 250px;
+  flex: 1;
+}
+
+.column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.badge {
+  background: #333;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+}
+
+.column h3 {
+  text-align: center;
+}
+
+.developer-list {
+  display: grid;
+  gap: 0.5rem;
+}

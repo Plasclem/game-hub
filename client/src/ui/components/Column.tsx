@@ -1,4 +1,5 @@
 import React from 'react';
+import './Column.css';
 import { Droppable } from '@hello-pangea/dnd';
 import DeveloperCard from './DeveloperCard';
 import { Developer } from '../../types';

@@ -1,4 +1,5 @@
 import React from 'react';
+import './Notification.css';
 
 interface NotificationProps {
   visible: boolean;

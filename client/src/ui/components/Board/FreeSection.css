@@ -1,0 +1,19 @@
+.free-section {
+  padding: 1rem;
+}
+
+.free-column {
+  background: #fffbea;
+  border-radius: 4px;
+  padding: 0.5rem;
+}
+
+.free-column .developer-list {
+  grid-template-columns: repeat(8, 1fr);
+}
+
+@media (max-width: 600px) {
+  .free-column .developer-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -5,6 +5,7 @@ import Board from './components/Board/Board';
 import Notification from './Notification';
 import { useAssignments } from '../behavior/useAssignments';
 import { sendNotification, subscribeNotifications } from '../services/notificationService';
+import './App.css';
 
 function App() {
   const { data, saved, handleDragEnd, totalDevelopers } = useAssignments();

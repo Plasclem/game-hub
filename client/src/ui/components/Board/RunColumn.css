@@ -1,0 +1,25 @@
+.anomalies-column {
+  background: #fde8e8;
+}
+
+.service-column {
+  background: #e8f4fd;
+}
+
+.fastTrack-column {
+  background: #f3e8fd;
+}
+
+.anomalies-column .developer-list,
+.service-column .developer-list,
+.fastTrack-column .developer-list {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 600px) {
+  .anomalies-column .developer-list,
+  .service-column .developer-list,
+  .fastTrack-column .developer-list {
+    grid-template-columns: 1fr;
+  }
+}
