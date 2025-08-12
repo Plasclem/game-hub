@@ -9,7 +9,7 @@ interface RunSectionProps {
 
 const RunSection: React.FC<RunSectionProps> = ({ run }) => {
   return (
-    <div className="run-section">
+    <div className="run-section" style={{ flex: runCols.length }}>
       <h3>⚙️ Run</h3>
       <div className="run-columns">
         {runCols.map((col) => (

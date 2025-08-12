@@ -33,6 +33,22 @@ body {
   flex-wrap: wrap;
 }
 
+.run-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.run-section h3 {
+  text-align: center;
+}
+
+.run-columns {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
 .column {
   background: #f4f4f4;
   border-radius: 4px;
