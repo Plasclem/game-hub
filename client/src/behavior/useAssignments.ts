@@ -23,12 +23,16 @@ export const useAssignments = () => {
         : sourceId === 'free'
         ? [...data.free]
         : [...data.run[sourceId]];
-    const destList =
+    let destList =
       destId === 'build'
         ? [...data.build]
         : destId === 'free'
         ? [...data.free]
         : [...data.run[destId]];
+
+    if (sourceId === destId) {
+      destList = sourceList;
+    }
 
     const [moved] = sourceList.splice(result.source.index, 1);
     destList.splice(result.destination.index, 0, moved);
