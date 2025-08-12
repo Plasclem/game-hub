@@ -11,6 +11,15 @@ const CLIENT_BUILD_PATH = path.join(__dirname, '../client/dist');
 
 app.use(cors());
 app.use(bodyParser.json());
+
+app.use((req, res, next) => {
+  const dragHeader = req.get('x-drag');
+  if (dragHeader !== undefined) {
+    res.cookie('x-drag', dragHeader);
+  }
+  next();
+});
+
 app.use(express.static(CLIENT_BUILD_PATH));
 
 let clients = [];
