@@ -1,11 +1,11 @@
 export interface FeatureConfig {
-  readOnly: boolean;
+  readOnly: boolean; // TODO : use this to disable saving assignments
   dragAndDrop: boolean;
 }
 
 export const features: FeatureConfig = {
   readOnly: false,
-  dragAndDrop: false,
+  dragAndDrop: true,
 };
 
 export default features;
