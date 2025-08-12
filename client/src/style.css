@@ -104,17 +104,7 @@ body {
 .developer-list {
   display: grid;
   gap: 0.5rem;
-}
-
-.build-column .developer-list,
-.anomalies-column .developer-list,
-.service-column .developer-list,
-.fastTrack-column .developer-list {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.free-column .developer-list {
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
 }
 
 .developer-card {
@@ -122,20 +112,7 @@ body {
   border: 1px solid #ccc;
   border-radius: 4px;
   padding: 0.5rem;
-  width: 90%;
-}
-
-@media (max-width: 600px) {
-  .build-column .developer-list,
-  .anomalies-column .developer-list,
-  .service-column .developer-list,
-  .fastTrack-column .developer-list {
-    grid-template-columns: 1fr;
-  }
-
-  .free-column .developer-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  width: 100%;
 }
 
 .lead-badge {
