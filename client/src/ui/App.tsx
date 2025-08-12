@@ -29,7 +29,7 @@ function App() {
     <Droppable droppableId={id} key={id}>
       {(provided) => (
         <div
-          className={`column ${columnClasses[id]}`}
+          className={id === 'free' ? columnClasses[id] : `column ${columnClasses[id]}`}
           ref={provided.innerRef}
           {...provided.droppableProps}
         >
@@ -75,16 +75,11 @@ function App() {
         <div className="total">Total développeurs : {totalDevelopers}</div>
       </header>
       <DragDropContext onDragEnd={handleDragEnd}>
+        <div className="free-section">{renderList('free', data.free)}</div>
         <div className="board">
           {renderList('build', data.build)}
-          <div className="run">
-            <h2>⚙️ Run</h2>
-            <div className="run-columns">
-              {runCols.map((col) => renderList(col, data.run[col]))}
-            </div>
-          </div>
+          {runCols.map((col) => renderList(col, data.run[col]))}
         </div>
-        <div className="free-section">{renderList('free', data.free)}</div>
       </DragDropContext>
       {saved && <div className="success">Sauvegarde réussie</div>}
       {notification && (
