@@ -12,6 +12,7 @@ Located in `server/`, a Node.js + Express API that reads and writes assignments 
 - `GET /snapshots` – lists snapshot labels
 - `GET /snapshots/:label` – returns a saved snapshot
 - `POST /snapshots` – saves a snapshot from `{ label, data }`
+- `DELETE /snapshots/:label` – deletes a snapshot
 
 ### Running the server
 ```

@@ -6,7 +6,12 @@ import Notification from './Notification';
 import { useAssignments } from '../behavior/useAssignments';
 import { sendNotification, subscribeNotifications } from '../services/notificationService';
 import features from '../config';
-import { getSnapshotLabels, getSnapshot, saveSnapshot } from '../services/snapshotService';
+import {
+  getSnapshotLabels,
+  getSnapshot,
+  saveSnapshot,
+  deleteSnapshot,
+} from '../services/snapshotService';
 import { Assignment } from '../types';
 import './App.css';
 
@@ -62,6 +67,20 @@ function App() {
     }
   };
 
+  const handleDeleteSnapshot = async (label: string) => {
+    const confirmed = window.confirm(`Supprimer ${label} ?`);
+    if (!confirmed) return;
+    try {
+      await deleteSnapshot(label);
+      setSnapshots((prev) => prev.filter((l) => l !== label));
+      if (view === label) {
+        showCurrent();
+      }
+    } catch (e) {
+      alert('Suppression impossible');
+    }
+  };
+
   const displayedData = view === 'current' ? data : snapshotData;
   const total = displayedData
     ? displayedData.build.length +
@@ -82,6 +101,7 @@ function App() {
         onSendNotification={sendNotification}
         snapshots={snapshots}
         onSaveSnapshot={view === 'current' ? handleSaveSnapshot : undefined}
+        onDeleteSnapshot={handleDeleteSnapshot}
         onViewSnapshot={showSnapshot}
         onViewCurrent={showCurrent}
         currentView={view}
