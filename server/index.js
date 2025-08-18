@@ -7,6 +7,7 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3001;
 const DATA_FILE = path.join(__dirname, '../data/affectations.json');
+const SNAPSHOT_FILE = path.join(__dirname, '../data/snapshots.json');
 const CLIENT_BUILD_PATH = path.join(__dirname, '../client/dist');
 
 app.use(cors());
@@ -49,6 +50,43 @@ app.get('/events', (req, res) => {
 app.post('/notify', (req, res) => {
   sendEvents(req.query.id);
   res.status(200).end();
+});
+
+const readSnapshots = async () => {
+  try {
+    const data = await fs.readFile(SNAPSHOT_FILE, 'utf-8');
+    return JSON.parse(data);
+  } catch (err) {
+    return {};
+  }
+};
+
+app.get('/snapshots', async (req, res) => {
+  const snaps = await readSnapshots();
+  res.json(Object.keys(snaps));
+});
+
+app.get('/snapshots/:label', async (req, res) => {
+  const snaps = await readSnapshots();
+  const snap = snaps[req.params.label];
+  if (!snap) {
+    return res.status(404).json({ error: 'Snapshot not found' });
+  }
+  res.json(snap);
+});
+
+app.post('/snapshots', async (req, res) => {
+  const { label, data } = req.body;
+  if (!label || !data) {
+    return res.status(400).json({ error: 'Label and data required' });
+  }
+  const snaps = await readSnapshots();
+  if (snaps[label]) {
+    return res.status(400).json({ error: 'Label already exists' });
+  }
+  snaps[label] = data;
+  await fs.writeFile(SNAPSHOT_FILE, JSON.stringify(snaps, null, 2));
+  res.json({ status: 'ok' });
 });
 
 app.get('/affectations', async (req, res) => {

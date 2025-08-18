@@ -9,6 +9,9 @@ Located in `server/`, a Node.js + Express API that reads and writes assignments 
 ### Endpoints
 - `GET /affectations` – returns current assignments
 - `POST /affectations` – saves assignments
+- `GET /snapshots` – lists snapshot labels
+- `GET /snapshots/:label` – returns a saved snapshot
+- `POST /snapshots` – saves a snapshot from `{ label, data }`
 
 ### Running the server
 ```
