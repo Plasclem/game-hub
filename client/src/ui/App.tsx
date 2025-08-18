@@ -70,11 +70,14 @@ function App() {
   const handleDeleteSnapshot = async (label: string) => {
     const confirmed = window.confirm(`Supprimer ${label} ?`);
     if (!confirmed) return;
-    await deleteSnapshot(label);
-    const labels = await getSnapshotLabels();
-    setSnapshots(labels);
-    if (view === label) {
-      showCurrent();
+    try {
+      await deleteSnapshot(label);
+      setSnapshots((prev) => prev.filter((l) => l !== label));
+      if (view === label) {
+        showCurrent();
+      }
+    } catch (e) {
+      alert('Suppression impossible');
     }
   };
 
