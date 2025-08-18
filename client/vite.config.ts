@@ -7,7 +7,8 @@ export default defineConfig({
     proxy: {
       '/affectations': 'http://localhost:3001',
       '/notify': 'http://localhost:3001',
-      '/events': 'http://localhost:3001'
+      '/events': 'http://localhost:3001',
+      '/snapshots': 'http://localhost:3001'
     }
   },
   plugins: [react()]
