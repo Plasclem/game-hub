@@ -14,3 +14,7 @@ export const getSnapshot = async (label: string): Promise<Assignment> => {
 export const saveSnapshot = async (label: string, data: Assignment): Promise<void> => {
   await axios.post('/snapshots', { label, data });
 };
+
+export const deleteSnapshot = async (label: string): Promise<void> => {
+  await axios.delete(`/snapshots/${encodeURIComponent(label)}`);
+};

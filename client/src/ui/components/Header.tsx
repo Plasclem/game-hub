@@ -6,6 +6,7 @@ interface HeaderProps {
   onSendNotification: () => void;
   snapshots: string[];
   onSaveSnapshot?: () => void;
+  onDeleteSnapshot: (label: string) => void;
   onViewSnapshot: (label: string) => void;
   onViewCurrent: () => void;
   currentView: string;
@@ -16,6 +17,7 @@ const Header: React.FC<HeaderProps> = ({
   onSendNotification,
   snapshots,
   onSaveSnapshot,
+  onDeleteSnapshot,
   onViewSnapshot,
   onViewCurrent,
   currentView,
@@ -29,19 +31,30 @@ const Header: React.FC<HeaderProps> = ({
           <button onClick={onViewCurrent} disabled={currentView === 'current'}>
             Vue courante
           </button>
-          {onSaveSnapshot && (
-            <button onClick={onSaveSnapshot}>Sauvegarder snapshot</button>
-          )}
           {snapshots.map((label) => (
-            <button key={label} onClick={() => onViewSnapshot(label)}>
-              {label}
-            </button>
+            <div key={label} className="snapshot-item">
+              <button onClick={() => onViewSnapshot(label)}>{label}</button>
+              <button
+                className="delete-snapshot-btn"
+                onClick={() => onDeleteSnapshot(label)}
+                aria-label={`Supprimer ${label}`}
+              >
+                🗑️
+              </button>
+            </div>
           ))}
         </div>
       </div>
-      <button className="notif-btn" onClick={onSendNotification}>
-        send notif
-      </button>
+      <div className="actions">
+        {onSaveSnapshot && (
+          <button className="save-snapshot-btn" onClick={onSaveSnapshot}>
+            Sauvegarder snapshot
+          </button>
+        )}
+        <button className="notif-btn" onClick={onSendNotification}>
+          send notif
+        </button>
+      </div>
       <div className="total">Total développeurs : {totalDevelopers}</div>
     </header>
   );

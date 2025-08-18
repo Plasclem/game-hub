@@ -25,6 +25,16 @@
   cursor: pointer;
 }
 
+.save-snapshot-btn {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
 .snapshot-controls {
   margin-top: 0.5rem;
   display: flex;
@@ -34,5 +44,16 @@
 
 .snapshot-controls button {
   padding: 0.25rem 0.5rem;
+  cursor: pointer;
+}
+
+.snapshot-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.delete-snapshot-btn {
+  padding: 0.25rem;
   cursor: pointer;
 }

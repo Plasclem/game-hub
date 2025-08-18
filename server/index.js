@@ -89,6 +89,16 @@ app.post('/snapshots', async (req, res) => {
   res.json({ status: 'ok' });
 });
 
+app.delete('/snapshots/:label', async (req, res) => {
+  const snaps = await readSnapshots();
+  if (!snaps[req.params.label]) {
+    return res.status(404).json({ error: 'Snapshot not found' });
+  }
+  delete snaps[req.params.label];
+  await fs.writeFile(SNAPSHOT_FILE, JSON.stringify(snaps, null, 2));
+  res.json({ status: 'ok' });
+});
+
 app.get('/affectations', async (req, res) => {
   try {
     const data = await fs.readFile(DATA_FILE, 'utf-8');
