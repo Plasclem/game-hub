@@ -24,11 +24,11 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   return (
     <header className="header">
-      <div>
+      <div className="main-block">
         <h1>Affectation des Développeurs</h1>
         <p>Gérez les affectations entre les équipes Build et Run</p>
         <div className="snapshot-controls">
-          <button onClick={onViewCurrent} disabled={currentView === 'current'}>
+          <button className="current-view" onClick={onViewCurrent} disabled={currentView === 'current'}>
             Vue courante
           </button>
           {snapshots.map((label) => (
