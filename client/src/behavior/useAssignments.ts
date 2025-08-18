@@ -3,6 +3,7 @@ import { DropResult } from '@hello-pangea/dnd';
 import { Assignment } from '../types';
 import { getAssignments, saveAssignments } from '../services/assignmentService';
 import { sendNotification } from '../services/notificationService';
+import features from '../config';
 
 export const useAssignments = () => {
   const [data, setData] = useState<Assignment | null>(null);
@@ -13,7 +14,7 @@ export const useAssignments = () => {
   }, []);
 
   const handleDragEnd = (result: DropResult) => {
-    if (!result.destination || !data) return;
+    if (!result.destination || !data || features.readOnly) return;
     const sourceId = result.source.droppableId as keyof Assignment['run'] | 'build' | 'free';
     const destId = result.destination.droppableId as keyof Assignment['run'] | 'build' | 'free';
 
