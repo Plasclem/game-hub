@@ -177,10 +177,22 @@ if (MONGO_URI) {
   const client = new MongoClient(MONGO_URI);
   client
     .connect()
-    .then(() => {
+    .then(async () => {
       const db = client.db(process.env.MONGO_DB_NAME || 'gamehub');
       affectationsCollection = db.collection('affectations');
       snapshotsCollection = db.collection('snapshots');
+
+      const existing = await affectationsCollection.findOne({ _id: 'affectations' });
+      if (!existing) {
+        try {
+          const defaultData = JSON.parse(await fs.readFile(DATA_FILE, 'utf-8'));
+          await affectationsCollection.insertOne({ _id: 'affectations', data: defaultData });
+          console.log('Inserted default team assignments into MongoDB');
+        } catch (seedErr) {
+          console.error('Failed to insert default team assignments', seedErr);
+        }
+      }
+
       console.log('Connected to MongoDB');
       startServer();
     })

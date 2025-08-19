@@ -25,6 +25,8 @@ To connect to MongoDB, set `MONGO_URI` before starting the server:
 ```
 MONGO_URI=mongodb://localhost:27017/gamehub npm start
 ```
+On first run, the server seeds the `affectations` collection with data from
+`data/affectations.json` if the collection is empty.
 
 ## Frontend
 
