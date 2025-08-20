@@ -11,7 +11,7 @@ const DATA_FILE = path.join(__dirname, '../data/affectations.json');
 const SNAPSHOT_FILE = path.join(__dirname, '../data/snapshots.json');
 const CLIENT_BUILD_PATH = path.join(__dirname, '../client/dist');
 
-const MONGO_URI = process.env.MONGO_URI;
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://mongodb1:10691/team-assignments';
 let affectationsCollection;
 let snapshotsCollection;
 
@@ -178,7 +178,7 @@ if (MONGO_URI) {
   client
     .connect()
     .then(async () => {
-      const db = client.db(process.env.MONGO_DB_NAME || 'gamehub');
+      const db = client.db(process.env.MONGO_DB_NAME || 'team-assignments');
       affectationsCollection = db.collection('affectations');
       snapshotsCollection = db.collection('snapshots');
 
