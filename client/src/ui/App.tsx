@@ -16,7 +16,7 @@ import { Assignment } from '../types';
 import './App.css';
 
 function App() {
-  const { data, saved, handleDragEnd } = useAssignments();
+  const { data, saved, handleDragEnd, updateNote } = useAssignments();
   const [notification, setNotification] = useState(false);
   const [snapshots, setSnapshots] = useState<string[]>([]);
   const [view, setView] = useState<'current' | string>('current');
@@ -107,7 +107,7 @@ function App() {
         currentView={view}
       />
       <DragDropContext onDragEnd={features.dragAndDrop ? handleDragEnd : () => {}}>
-        <Board data={displayedData} />
+        <Board data={displayedData} onNoteChange={updateNote} />
       </DragDropContext>
       {view === 'current' && saved && <div className="success">Sauvegarde réussie</div>}
       <Notification visible={notification} />
