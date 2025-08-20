@@ -4,7 +4,7 @@ This repository contains a simple full-stack application to manage developer ass
 
 ## Backend
 
-Located in `server/`, a Node.js + Express API that reads and writes assignments to `data/affectations.json`.
+Located in `server/`, a Node.js + Express API that reads and writes assignments to `data/affectations.json` by default. The server can also use a MongoDB database when the `MONGO_URI` environment variable is provided, storing data in `affectations` and `snapshots` collections.
 
 ### Endpoints
 - `GET /affectations` – returns current assignments
@@ -20,6 +20,13 @@ cd server
 npm install
 npm start
 ```
+
+To connect to MongoDB, set `MONGO_URI` before starting the server:
+```
+MONGO_URI=mongodb://localhost:27017/gamehub npm start
+```
+On first run, the server seeds the `affectations` collection with data from
+`data/affectations.json` if the collection is empty.
 
 ## Frontend
 
