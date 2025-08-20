@@ -15,3 +15,26 @@
   margin-left: 4px;
   font-size: 0.75rem;
 }
+
+.developer-note {
+  background: #fffbcc;
+  padding: 2px 4px;
+  border-radius: 4px;
+  margin-top: 4px;
+}
+
+.note-btn {
+  margin-top: 4px;
+  border: none;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.note-btn.add {
+  background: #e0e0e0;
+}
+
+.note-btn.edit {
+  background: #cce5ff;
+}

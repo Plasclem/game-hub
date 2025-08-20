@@ -6,15 +6,17 @@ import { titles, columnClasses } from '../../../behavior/constants';
 
 interface BuildColumnProps {
   developers: Developer[];
+  onNoteChange: (id: string, note?: string) => void;
 }
 
-const BuildColumn: React.FC<BuildColumnProps> = ({ developers }) => {
+const BuildColumn: React.FC<BuildColumnProps> = ({ developers, onNoteChange }) => {
   return (
     <Column
       id="build"
       title={titles.build}
       developers={developers}
       className={`column ${columnClasses.build}`}
+      onNoteChange={onNoteChange}
     />
   );
 };

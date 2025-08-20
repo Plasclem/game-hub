@@ -2,6 +2,7 @@ export type Developer = {
   id: string;
   name: string;
   lead: string;
+  note?: string;
 };
 
 export type Assignment = {

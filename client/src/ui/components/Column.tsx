@@ -10,9 +10,16 @@ interface ColumnProps {
   title: string;
   developers: Developer[];
   className: string;
+  onNoteChange: (id: string, note?: string) => void;
 }
 
-const Column: React.FC<ColumnProps> = ({ id, title, developers, className }) => {
+const Column: React.FC<ColumnProps> = ({
+  id,
+  title,
+  developers,
+  className,
+  onNoteChange,
+}) => {
   return (
     <Droppable droppableId={id} key={id} isDropDisabled={!features.dragAndDrop}>
       {(provided) => (
@@ -23,7 +30,12 @@ const Column: React.FC<ColumnProps> = ({ id, title, developers, className }) => 
           </div>
           <div className="developer-list">
             {developers.map((dev, index) => (
-              <DeveloperCard key={dev.id} developer={dev} index={index} />
+              <DeveloperCard
+                key={dev.id}
+                developer={dev}
+                index={index}
+                onNoteChange={onNoteChange}
+              />
             ))}
             {provided.placeholder}
           </div>

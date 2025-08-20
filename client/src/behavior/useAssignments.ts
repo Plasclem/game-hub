@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { DropResult } from '@hello-pangea/dnd';
-import { Assignment } from '../types';
+import { Assignment, Developer } from '../types';
 import { getAssignments, saveAssignments } from '../services/assignmentService';
 import { sendNotification } from '../services/notificationService';
 import features from '../config';
@@ -76,6 +76,27 @@ export const useAssignments = () => {
     });
   };
 
+  const updateNote = (id: string, note?: string) => {
+    if (!data || features.readOnly) return;
+    const update = (list: Developer[]) =>
+      list.map((dev) => (dev.id === id ? { ...dev, note } : dev));
+    const newData: Assignment = {
+      build: update(data.build),
+      run: {
+        anomalies: update(data.run.anomalies),
+        service: update(data.run.service),
+        fastTrack: update(data.run.fastTrack),
+      },
+      free: update(data.free),
+    };
+    setData(newData);
+    saveAssignments(newData).then(() => {
+      setSaved(true);
+      setTimeout(() => setSaved(false), 2000);
+      sendNotification();
+    });
+  };
+
   const totalDevelopers =
     data
       ? data.build.length +
@@ -85,5 +106,5 @@ export const useAssignments = () => {
         data.free.length
       : 0;
 
-  return { data, saved, handleDragEnd, totalDevelopers };
+  return { data, saved, handleDragEnd, totalDevelopers, updateNote };
 };

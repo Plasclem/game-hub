@@ -6,9 +6,10 @@ import { titles, columnClasses } from '../../../behavior/constants';
 
 interface FreeSectionProps {
   developers: Developer[];
+  onNoteChange: (id: string, note?: string) => void;
 }
 
-const FreeSection: React.FC<FreeSectionProps> = ({ developers }) => {
+const FreeSection: React.FC<FreeSectionProps> = ({ developers, onNoteChange }) => {
   return (
     <div className="free-section">
       <Column
@@ -16,6 +17,7 @@ const FreeSection: React.FC<FreeSectionProps> = ({ developers }) => {
         title={titles.free}
         developers={developers}
         className={columnClasses.free}
+        onNoteChange={onNoteChange}
       />
     </div>
   );

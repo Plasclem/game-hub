@@ -7,15 +7,16 @@ import FreeSection from './FreeSection';
 
 interface BoardProps {
   data: Assignment;
+  onNoteChange: (id: string, note?: string) => void;
 }
 
-const Board: React.FC<BoardProps> = ({ data }) => {
+const Board: React.FC<BoardProps> = ({ data, onNoteChange }) => {
   return (
     <>
-      <FreeSection developers={data.free} />
+      <FreeSection developers={data.free} onNoteChange={onNoteChange} />
       <div className="board">
-        <BuildColumn developers={data.build} />
-        <RunSection run={data.run} />
+        <BuildColumn developers={data.build} onNoteChange={onNoteChange} />
+        <RunSection run={data.run} onNoteChange={onNoteChange} />
       </div>
     </>
   );
